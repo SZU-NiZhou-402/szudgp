@@ -1,6 +1,6 @@
 % 3.实现该256x256的图像块的灰度分辨率图(1-8 bits)，并存储为jpg图片;
 
-photo_path = 'exp1/photo.jpg';
+photo_path = 'exp1/photo1.jpg';
 photo = imread(photo_path);
 
 % 灰度化
@@ -17,7 +17,11 @@ var_names = {'photo_1_bit', 'photo_2_bit', 'photo_3_bit', 'photo_4_bit', 'photo_
 
 % 使用循环处理所有灰度分辨率
 for i = 1:8
-    assignin('base', var_names{i}, gray_resolution(photo, i));
+    img = gray_resolution(photo, i);
+    % 添加标题文字
+    img = insertText(img, [10 10], sprintf('%d bits', i), 'FontSize', 18, 'BoxColor', 'white', 'BoxOpacity', 0.7);
+    
+    assignin('base', var_names{i}, img);
 end
 
 % 拼成一张图
